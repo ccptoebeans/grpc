@@ -2,14 +2,20 @@
   "dependencies": [
     {
       "name": "python3",
-      "version>=": "3.12.3#2",
-      "host": true
-    }
-  ],
-  "overrides": [
+      "version>=": "3.12.3#2"
+    },
     {
       "name": "protobuf",
-      "version": "3.6.0.1"
+      "version>=": "3.17.3#1",
+      "features": ["pyext"]
+    },
+    {
+      "name": "grpc",
+      "version>=": "1.41.0"
+    },
+    {
+      "name": "carbon-prometheus",
+      "version>=": "4.0.0#2"
     }
   ]
 }

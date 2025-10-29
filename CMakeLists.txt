@@ -1,24 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
-project(CarbonTemplateProject VERSION 1.0.0)
+project(carbon-grpc VERSION 1.0.0)
 
 include(cmake/CcpBuildConfigurations.cmake)
 include(cmake/CcpTargetConfigurations.cmake)
 
-ccp_add_library(target_name SHARED)
-
-get_target_property(_SOURCES target_name SOURCES)
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
-        PREFIX "Sources"
-        FILES ${_SOURCES}
-)
-
-set_target_properties(target_name PROPERTIES OUTPUT_NAME "_target_name")
-
-target_include_directories(target_name
-        PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-)
+add_subdirectory(src)
 
 # Provide an install target if this is the top level project only
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
@@ -53,55 +39,30 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
                 INSTALL_DESTINATION documentation
         )
 
-        add_dependencies(Sphinx target_name)
+        add_dependencies(Sphinx carbon_grpc)
     endif()
 
+    # Install rule for available public headers
+    install(
+            TARGETS client module
+            EXPORT carbon-grpcTarget
+            CONFIGURATIONS ${CMAKE_CONFIGURATION_TYPES}
+            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-grpc
+            ARCHIVE DESTINATION lib
+            LIBRARY DESTINATION lib
+            RUNTIME DESTINATION bin
+    )
 
-    option(INSTALL_TO_MONOLITH "Install this package to a perforce branch vendor folder - provided for backwards compatability" OFF)
-    if (INSTALL_TO_MONOLITH)
-        include(cmake/CcpMonolithVendorConfig.cmake)
-        include(cmake/CcpPackageConfigHelpers.cmake)
+    export( EXPORT carbon-grpcTarget
+            NAMESPACE carbon-grpc::
+            FILE carbon-grpc.cmake
+    )
 
-        # Install rule to ensure that our runtime and linker files are in the expected, platform-specific folders
-        install(
-                TARGETS target_name
-                EXPORT package_nameTarget
-                CONFIGURATIONS ${CMAKE_CONFIGURATION_TYPES}
-                LIBRARY DESTINATION ${CCP_VENDOR_LIB_PATH}
-                ARCHIVE DESTINATION ${CCP_VENDOR_LIB_PATH}
-                RUNTIME DESTINATION ${CCP_VENDOR_BIN_PATH}
-        )
-
-        # Generate target configuration for the monolith
-        configure_ccp_vendor_config_file(
-                TARGET target_name
-                DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/package_nameConfig.cmake"
-                DEPENDENCIES ""
-        )
-        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/package_nameConfig.cmake DESTINATION .)
-        install(DIRECTORY python DESTINATION . FILES_MATCHING PATTERN "*.py")
-    else ()
-        # Install rule for available public headers
-        install(
-                TARGETS target_name
-                EXPORT package_nameTarget
-                CONFIGURATIONS ${CMAKE_CONFIGURATION_TYPES}
-                DESTINATION ${CMAKE_INSTALL_PREFIX}/share/package_name
-                ARCHIVE DESTINATION lib
-                LIBRARY DESTINATION lib
-                RUNTIME DESTINATION bin
-        )
-
-        install(EXPORT package_nameTarget
-                DESTINATION share/package_name
-                FILE package_name.cmake
-        )
-
-        install(
-                FILES package_nameConfig.cmake
-                DESTINATION ${CMAKE_INSTALL_PREFIX}/share/package_name)
-    endif()
+    install(
+            FILES carbon-grpcConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/carbon-grpc.cmake
+            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-grpc)
 
     install(DIRECTORY include DESTINATION . FILES_MATCHING PATTERN "*.h")
+    install(DIRECTORY include DESTINATION . FILES_MATCHING PATTERN "*.hpp")
 
 endif()

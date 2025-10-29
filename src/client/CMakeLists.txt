@@ -1,0 +1,34 @@
+find_package(carbon-prometheus CONFIG REQUIRED)
+find_package(Python3 COMPONENTS Development Interpreter REQUIRED)
+find_package(protobuf CONFIG REQUIRED)
+find_package(grpc CONFIG REQUIRED)
+
+ccp_add_library(client STATIC
+    cached_metrics.cpp
+    connection.cpp
+    grpc_log.cpp
+    jobs.cpp
+    metadata.cpp
+    resolver.cpp
+    stream_counter.cpp
+    stream_status_log.cpp
+)
+
+set_property(TARGET client PROPERTY CXX_STANDARD 17)
+
+target_include_directories(client
+    PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:/include>
+)
+
+target_link_libraries(client PUBLIC
+    c-ares::cares
+    PrometheusModule
+    protobuf::pyext
+    gRPC::grpc++
+)
+
+set_target_properties(client PROPERTIES
+        OUTPUT_NAME "carbon_grpc_client"
+)
