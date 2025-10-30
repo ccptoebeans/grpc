@@ -172,7 +172,7 @@ PyObject* Connection::set_metric_registry(PythonType* self, PyObject* args, PyOb
   PyObject* arg_prefix = nullptr;
   PyObject* arg_labels = nullptr;
 
-  static const char* keyword_list[] = {"registry", "prefix", "labels", "async", nullptr};
+  static const char* keyword_list[] = {"registry", "prefix", "labels", "asynchronous", nullptr};
 
   if (!PyArg_ParseTupleAndKeywords(
         args, keywords, "O|OOO", (char**)keyword_list, &arg_registry, &arg_prefix, &arg_labels
