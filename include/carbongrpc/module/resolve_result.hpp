@@ -48,7 +48,7 @@ PyObject* ResolveResult::get_request_name(PythonType* self, PyObject*) {
     Py_RETURN_NONE;
   }
 
-  return PyUnicode_FromString(self->result->request_name().c_str());
+  return PyBytes_FromString(self->result->request_name().c_str());
 }
 
 const char* ResolveResult::docstring_get_error =
@@ -77,7 +77,7 @@ PyObject* ResolveResult::get_error(PythonType* self, PyObject*) {
   PyTuple_SetItem(tupl, 0, PyLong_FromLong((long)err));
 
   if (err == ARES_SUCCESS) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("Success"));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("Success"));
   } else if (err == ARES_ENOTIMP) {
     PyTuple_SetItem(
       tupl, 1,
@@ -85,13 +85,13 @@ PyObject* ResolveResult::get_error(PythonType* self, PyObject*) {
                           "find addresses of type family.")
     );
   } else if (err == ARES_ETIMEOUT) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("No name servers responded within the timeout period."));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("No name servers responded within the timeout period."));
   } else if (err == ARES_ENOMEM) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("Memory was exhausted."));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("Memory was exhausted."));
   } else if (err == ARES_ENODATA) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("There was no data returned to extract a result from."));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("There was no data returned to extract a result from."));
   } else if (err == ARES_ECANCELLED) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("The query was cancelled."));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("The query was cancelled."));
   } else if (err == ARES_EDESTRUCTION) {
     PyTuple_SetItem(
       tupl, 1,
@@ -99,29 +99,29 @@ PyObject* ResolveResult::get_error(PythonType* self, PyObject*) {
                           "query will not be completed.")
     );
   } else if (err == ARES_EBADNAME) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("The name is invalid for the given request."));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("The name is invalid for the given request."));
   } else if (err == ARES_EFORMERR) {
     PyTuple_SetItem(
       tupl, 1,
-      PyUnicode_FromString("The query completed but the server claims that "
+      PyBytes_FromString("The query completed but the server claims that "
                           "the query was malformatted.")
     );
   } else if (err == ARES_ESERVFAIL) {
     PyTuple_SetItem(
       tupl, 1,
-      PyUnicode_FromString("The query completed but the server claims to have "
+      PyBytes_FromString("The query completed but the server claims to have "
                           "experienced a failure.")
     );
   } else if (err == ARES_ENOTFOUND) {
     PyTuple_SetItem(
       tupl, 1,
-      PyUnicode_FromString("The query completed but the requested "
+      PyBytes_FromString("The query completed but the requested "
                           "domain name was not found.")
     );
   } else if (err == ARES_EREFUSED) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("The query completed but the server refused the query."));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("The query completed but the server refused the query."));
   } else if (err == ARES_ECONNREFUSED) {
-    PyTuple_SetItem(tupl, 1, PyUnicode_FromString("No name servers could be contacted."));
+    PyTuple_SetItem(tupl, 1, PyBytes_FromString("No name servers could be contacted."));
   }
 
   return tupl;
@@ -141,7 +141,7 @@ PyObject* ResolveResult::get_official_name(PythonType* self, PyObject*) {
     Py_RETURN_NONE;
   }
 
-  return PyUnicode_FromString(self->result->official_name().c_str());
+  return PyBytes_FromString(self->result->official_name().c_str());
 }
 
 const char* ResolveResult::docstring_get_addresses =
@@ -163,7 +163,7 @@ PyObject* ResolveResult::get_addresses(PythonType* self, PyObject*) {
   PyObject* py_result = PyList_New((Py_ssize_t)addresses.size());
   for (auto i = 0; i < addresses.size(); i++) {
     auto address = addresses[i];
-    PyList_SetItem(py_result, i, PyUnicode_FromString(address.c_str()));
+    PyList_SetItem(py_result, i, PyBytes_FromString(address.c_str()));
   }
 
   return py_result;
@@ -187,7 +187,7 @@ PyObject* ResolveResult::get_aliases(PythonType* self, PyObject*) {
   PyObject* py_result = PyList_New((Py_ssize_t)aliases.size());
   for (auto i = 0; i < aliases.size(); i++) {
     auto alias = aliases[i];
-    PyList_SetItem(py_result, i, PyUnicode_FromString(alias.c_str()));
+    PyList_SetItem(py_result, i, PyBytes_FromString(alias.c_str()));
   }
 
   return py_result;
@@ -216,7 +216,7 @@ PyObject* ResolveResult::get_srv_result(PythonType* self, PyObject*) {
   for (auto i = 0; i < srv_results.size(); i++) {
     auto srv = srv_results[i];
     PyObject* tupl = PyTuple_New(4);
-    PyTuple_SetItem(tupl, 0, PyUnicode_FromString(srv.host.c_str()));
+    PyTuple_SetItem(tupl, 0, PyBytes_FromString(srv.host.c_str()));
     PyTuple_SetItem(tupl, 1, PyLong_FromLong((long)srv.port));
     PyTuple_SetItem(tupl, 2, PyLong_FromLong((long)srv.priority));
     PyTuple_SetItem(tupl, 3, PyLong_FromLong((long)srv.weight));

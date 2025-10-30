@@ -58,9 +58,9 @@ PyObject* GrpcLog::get_logs(PyObject*, PyObject*) {
     }
     PyObject* tuple = PyTuple_New(4);                             // new reference
     PyTuple_SetItem(tuple, 0, PyLong_FromLong((long)log.severity));  // new reference gets stolen by PyTuple_SetItem
-    PyTuple_SetItem(tuple, 1, PyUnicode_FromStringAndSize(log.file.c_str(), (Py_ssize_t)log.file.size()));  // new reference gets stolen by PyTuple_SetItem
+    PyTuple_SetItem(tuple, 1, PyBytes_FromStringAndSize(log.file.c_str(), (Py_ssize_t)log.file.size()));  // new reference gets stolen by PyTuple_SetItem
     PyTuple_SetItem(tuple, 2, PyLong_FromLong((long)log.line));  // new reference gets stolen by PyTuple_SetItem
-    PyTuple_SetItem(tuple, 3, PyUnicode_FromStringAndSize(log.message.c_str(), (Py_ssize_t)log.message.size()));  // new reference gets stolen by PyTuple_SetItem
+    PyTuple_SetItem(tuple, 3, PyBytes_FromStringAndSize(log.message.c_str(), (Py_ssize_t)log.message.size()));  // new reference gets stolen by PyTuple_SetItem
     PyList_Append(result, tuple);
 
     // PyList_Append borrows a reference to tuple, so we need to drop our reference here

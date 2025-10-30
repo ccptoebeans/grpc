@@ -194,7 +194,7 @@ void Helpers::PrintDictionary(PyObject* dict) const {
   while (PyDict_Next(dict, &pos, &key, &value)) {
     PyObject* reprk = PyObject_Repr(key);
     PyObject* reprv = PyObject_Repr(value);
-    printf("%s = %s\n", PyString_AsString(reprk), PyString_AsString(reprv));
+    printf("%s = %s\n", PyBytes_AsString(reprk), PyBytes_AsString(reprv));
     Py_DecRef(reprk);
     Py_DecRef(reprv);
   }
