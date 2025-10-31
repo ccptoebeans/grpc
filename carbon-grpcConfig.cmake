@@ -35,4 +35,4 @@ include(${CMAKE_CURRENT_LIST_DIR}/carbon-grpc.cmake)
 
 find_dependency(Python3 COMPONENTS Development REQUIRED)
 find_dependency(protobuf CONFIG REQUIRED)
-find_dependency(grpc CONFIG REQUIRED)
+find_dependency(gRPC CONFIG REQUIRED)
