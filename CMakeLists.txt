@@ -39,7 +39,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
                 INSTALL_DESTINATION documentation
         )
 
-        add_dependencies(Sphinx carbon_grpc)
+        add_dependencies(Sphinx client module)
     endif()
 
     # Install rule for available public headers
