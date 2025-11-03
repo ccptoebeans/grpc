@@ -47,20 +47,20 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
             TARGETS client module
             EXPORT carbon-grpcTarget
             CONFIGURATIONS ${CMAKE_CONFIGURATION_TYPES}
-            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-grpc
             ARCHIVE DESTINATION lib
             LIBRARY DESTINATION lib
             RUNTIME DESTINATION bin
     )
 
-    export( EXPORT carbon-grpcTarget
+    install(EXPORT carbon-grpcTarget
+            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-grpc
             NAMESPACE carbon-grpc::
             FILE carbon-grpc.cmake
     )
 
-    install(
-            FILES carbon-grpcConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/carbon-grpc.cmake
-            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-grpc)
+    install(FILES carbon-grpcConfig.cmake
+            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-grpc
+    )
 
     install(DIRECTORY include DESTINATION . FILES_MATCHING PATTERN "*.h")
     install(DIRECTORY include DESTINATION . FILES_MATCHING PATTERN "*.hpp")
