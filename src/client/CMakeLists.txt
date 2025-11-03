@@ -23,7 +23,6 @@ target_include_directories(client
 )
 
 target_link_libraries(client PUBLIC
-    c-ares::cares
     PrometheusModule
     protobuf::pyext
     gRPC::grpc++
