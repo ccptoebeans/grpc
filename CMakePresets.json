@@ -45,7 +45,8 @@
       "generator": "Visual Studio 17 2022",
       "inherits": ["common", "windows"],
       "toolset": {
-        "value": "v141"
+        "value": "v141",
+        "strategy": "set"
       },
       "hidden": true
     },
