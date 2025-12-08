@@ -18,10 +18,11 @@ set_property(TARGET client PROPERTY CXX_STANDARD 17)
 get_target_property(PROMETHEUS_INTERFACE PrometheusModule INTERFACE_INCLUDE_DIRECTORIES)
 
 target_include_directories(client
+    PUBLIC
+        ${PROMETHEUS_INTERFACE}
     PRIVATE
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:/include>
-        ${PROMETHEUS_INTERFACE}
 )
 
 target_link_libraries(client PUBLIC
