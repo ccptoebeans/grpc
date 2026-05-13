@@ -1,3 +1,4 @@
+# Copyright © 2025 CCP ehf.
 include(CMakeFindDependencyMacro)
 
 # ${CMAKE_CURRENT_LIST_DIR}/project_name.cmake is generated automatically by cmake as part of the install step

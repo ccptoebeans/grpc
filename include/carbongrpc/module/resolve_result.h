@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef RESOLVE_RESULT_MODULE_H
 #define RESOLVE_RESULT_MODULE_H
 

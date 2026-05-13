@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #include "grpc_log.h"
 
 namespace monolith_grpc {

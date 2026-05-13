@@ -1,3 +1,4 @@
+# Copyright © 2025 CCP ehf.
 find_package(Python3 COMPONENTS Development Interpreter REQUIRED)
 
 ccp_add_library(module STATIC

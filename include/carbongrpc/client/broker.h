@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef BROKER_H
 #define BROKER_H
 

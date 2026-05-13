@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef STREAM_STATUS_LOG_H
 #define STREAM_STATUS_LOG_H
 

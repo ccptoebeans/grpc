@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef METADATA_H
 #define METADATA_H
 

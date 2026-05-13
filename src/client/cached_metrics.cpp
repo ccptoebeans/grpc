@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #include "carbongrpc/client/cached_metrics.h"
 using namespace monolith_grpc::client;
 

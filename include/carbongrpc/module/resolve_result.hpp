@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #include "resolve_result.h"
 using namespace monolith_grpc;
 using namespace monolith_grpc::module;

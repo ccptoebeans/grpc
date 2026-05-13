@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef RESOLVER_H
 #define RESOLVER_H
 

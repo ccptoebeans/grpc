@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #include "carbongrpc/module/helpers.h"
 
 #include <chrono>

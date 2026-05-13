@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef JOBS_H
 #define JOBS_H
 

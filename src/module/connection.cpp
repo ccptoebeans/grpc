@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 // std
 #include "carbongrpc/module/connection.h"
 

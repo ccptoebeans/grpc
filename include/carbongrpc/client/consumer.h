@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef CONSUMER_H
 #define CONSUMER_H
 

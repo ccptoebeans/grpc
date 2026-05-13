@@ -1,3 +1,4 @@
+# Copyright © 2025 CCP ehf.
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -7,7 +8,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'project_name'
-copyright = '2024, CCP Games'
+copyright = '2025, CCP ehf.'
 author = 'CCP Games'
 release = '0.1'
 

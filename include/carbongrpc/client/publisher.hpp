@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #include "publisher.h"
 using namespace monolith_grpc;
 using namespace monolith_grpc::client;

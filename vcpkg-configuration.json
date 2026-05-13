@@ -7,8 +7,8 @@
   "registries": [
     {
       "kind": "git",
-      "repository": "git@github.com:ccpgames/carbon-vcpkg-registry.git",
-      "baseline": "56f0f1f1e6187cc7c110aa7a05405efd7f4389e5",
+      "repository": "git@github.com:carbonengine/vcpkg-registry.git",
+      "baseline": "791fb7e381fe5cec977769bafa0a1a23adbe7573",
       "packages": ["abseil", "carbon-*", "ccp-debug-info", "openssl", "protobuf", "python3", "zlib"]
     }
   ]

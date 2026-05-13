@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef GATEWAY_MODULE_H
 #define GATEWAY_MODULE_H
 

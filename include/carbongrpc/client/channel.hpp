@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #include "channel.h"
 
 namespace monolith_grpc::client {

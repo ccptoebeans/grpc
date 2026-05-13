@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef PUBLISHER_H
 #define PUBLISHER_H
 

@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef STREAM_COUNTER_H
 #define STREAM_COUNTER_H
 

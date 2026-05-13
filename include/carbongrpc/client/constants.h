@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 

@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #pragma once
 
 #include <Python.h>

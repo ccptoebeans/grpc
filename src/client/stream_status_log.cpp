@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #include "carbongrpc/client/stream_status_log.h"
 
 #include <utility>

@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef CONNECTION_H
 #define CONNECTION_H
 

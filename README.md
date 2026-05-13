@@ -64,4 +64,14 @@ This pipeline automates handling open pull requests (PRs) when new commits are p
 
 This setup ensures all PRs remain up-to-date with the latest changes from the target branch.
 
+## 📄 License and Legal Notices
 
+© 2026 CCP Games
+
+This software is provided by CCP Games and does not include or distribute any third-party libraries or frameworks.
+
+This software provides a base for creating project specific Python gRPC modules.
+
+Trademark Notice: CCP Games is a trademark of CCP ehf.
+
+This project is licensed under the [MIT License](LICENSE.md). Nothing in the [MIT License](LICENSE.md) grants any rights to CCP Games' trademarks or game content.

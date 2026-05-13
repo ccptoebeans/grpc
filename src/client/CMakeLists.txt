@@ -1,3 +1,4 @@
+# Copyright © 2025 CCP ehf.
 find_package(carbon-prometheus CONFIG REQUIRED)
 find_package(Python3 COMPONENTS Development Interpreter REQUIRED)
 find_package(protobuf CONFIG REQUIRED)

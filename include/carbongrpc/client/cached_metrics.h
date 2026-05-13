@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 #ifndef CACHED_METRICS_H
 #define CACHED_METRICS_H
 
