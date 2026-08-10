@@ -8,6 +8,7 @@
 #include <string>
 
 #include <absl/log/log_sink_registry.h>
+#include <absl/log/globals.h>
 
 namespace monolith_grpc::client {
 
@@ -16,18 +17,13 @@ class LogSink : public absl::LogSink
 public:
 	void Send(const absl::LogEntry& entry) override
 	{
-		auto severityEnumType = entry.log_severity();
-		if (severityEnumType < m_verbosity)
-		{
-			return;
-		}
-
 		std::scoped_lock lock(m_lock);
 
 		auto sourceFile = std::string(entry.source_filename());
 		int sourceLine = entry.source_line();
 		auto message = std::string(entry.encoded_message()); // TODO: Work out what the different message functions do
 
+		auto severityEnumType = entry.log_severity();
 		// avoid type narrowing, this ensures that the expected int type is the underlying type of the absl::LogSeverity enum class
 		int severity  {static_cast<std::underlying_type_t<decltype(severityEnumType)>>(severityEnumType)};
 
@@ -40,7 +36,7 @@ public:
 
 	void SetVerbosity(int verbosity)
 	{
-		m_verbosity = static_cast<absl::LogSeverity>(verbosity);
+		absl::SetGlobalVLogLevel(verbosity);
 	}
 
 	std::list<GrpcLogEntry> GetLogEntries()
@@ -54,7 +50,6 @@ public:
 	}
 
 private:
-	absl::LogSeverity m_verbosity;
 	std::mutex m_lock;
 	std::list<GrpcLogEntry> m_log;
 };
