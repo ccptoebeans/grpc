@@ -9,8 +9,6 @@
 
 namespace monolith_grpc::client {
 
-// forward declare internal abseil log sink
-class LogSink;
 
 struct GrpcLogEntry {
   std::string file;
@@ -33,7 +31,6 @@ public:
 private:
 
   static std::once_flag init_flag_;
-  static LogSink* log_sink;
 };
 
 }  // namespace monolith_grpc::client

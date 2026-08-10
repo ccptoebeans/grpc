@@ -6,6 +6,7 @@
 #include <list>
 #include <mutex>
 #include <string>
+#include <memory>
 
 #include <absl/log/log_sink_registry.h>
 #include <absl/log/globals.h>
@@ -62,13 +63,12 @@ GrpcLogEntry::GrpcLogEntry(std::string file, int line, gpr_log_severity severity
 }
 
 std::once_flag GrpcLog::init_flag_;
-
-LogSink* GrpcLog::log_sink = nullptr;
+static std::unique_ptr<LogSink> log_sink;
 
 void GrpcLog::Initialize() {
   std::call_once(init_flag_, []() {
-  	log_sink = new LogSink();
-  	absl::AddLogSink( log_sink );
+  	log_sink = std::make_unique<LogSink>();
+  	absl::AddLogSink( log_sink.get() );
   });
 }
 
