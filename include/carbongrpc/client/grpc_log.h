@@ -9,6 +9,9 @@
 
 namespace monolith_grpc::client {
 
+// forward declare internal abseil log sink
+class LogSink;
+
 struct GrpcLogEntry {
   std::string file;
   int line;
@@ -25,17 +28,12 @@ public:
 
   static void SetLogLevel(gpr_log_severity level);
 
-  static void Log(gpr_log_func_args* args);
   [[nodiscard]] static std::list<GrpcLogEntry> GetLogEntries();
 
 private:
 
   static std::once_flag init_flag_;
-
-  static std::list<GrpcLogEntry> log_;
-  static std::mutex lock_;
-
-  static size_t max_log_records_;
+  static LogSink* log_sink;
 };
 
 }  // namespace monolith_grpc::client
