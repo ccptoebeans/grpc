@@ -17,8 +17,6 @@ public:
 	void Send(const absl::LogEntry& entry) override
 	{
 		auto severityEnumType = entry.log_severity();
-		// avoid type narrowing, this ensures that the expected int type is the underlying type of the absl::LogSeverity enum class
-		// int severity  {static_cast<std::underlying_type_t<decltype(severityEnumType)>>(severityEnumType)};
 		if (severityEnumType < m_verbosity)
 		{
 			return;
