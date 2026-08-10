@@ -72,10 +72,6 @@ LogSink* GrpcLog::log_sink = nullptr;
 
 void GrpcLog::Initialize() {
   std::call_once(init_flag_, []() {
-    if( log_sink != nullptr )
-    {
-		delete log_sink;
-    }
   	log_sink = new LogSink();
   	absl::AddLogSink( log_sink );
   });
