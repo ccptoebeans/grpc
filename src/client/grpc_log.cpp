@@ -18,15 +18,20 @@ class LogSink : public absl::LogSink
 public:
 	void Send(const absl::LogEntry& entry) override
 	{
+		auto severityEnumType = entry.log_severity();
+		// avoid type narrowing, this ensures that the expected int type is the underlying type of the absl::LogSeverity enum class
+		int severity  {static_cast<std::underlying_type_t<decltype(severityEnumType)>>(severityEnumType)};
+
+		if (severity < m_verbosity)
+		{
+			return;
+		}
+
 		std::scoped_lock lock(m_lock);
 
 		auto sourceFile = std::string(entry.source_filename());
 		int sourceLine = entry.source_line();
-		auto message = std::string(entry.encoded_message()); // TODO: Work out what the different message functions do
-
-		auto severityEnumType = entry.log_severity();
-		// avoid type narrowing, this ensures that the expected int type is the underlying type of the absl::LogSeverity enum class
-		int severity  {static_cast<std::underlying_type_t<decltype(severityEnumType)>>(severityEnumType)};
+		auto message = std::string(entry.text_message_with_prefix());
 
 		m_log.emplace_back(GrpcLogEntry(sourceFile, sourceLine, (gpr_log_severity)severity, message));
 
@@ -37,7 +42,7 @@ public:
 
 	void SetVerbosity(int verbosity)
 	{
-		absl::SetGlobalVLogLevel(verbosity);
+		m_verbosity = verbosity;
 	}
 
 	std::list<GrpcLogEntry> GetLogEntries()
@@ -53,6 +58,7 @@ public:
 private:
 	std::mutex m_lock;
 	std::list<GrpcLogEntry> m_log;
+	int m_verbosity{GPR_LOG_SEVERITY_DEBUG};
 };
 
 GrpcLogEntry::GrpcLogEntry(std::string file, int line, gpr_log_severity severity, std::string message)
