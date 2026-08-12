@@ -5,6 +5,7 @@ project(logging_sink_test VERSION 1.0.0)
 find_package(Python3 COMPONENTS Development Interpreter REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(absl CONFIG REQUIRED)
+find_package(carbon-core CONFIG REQUIRED)
 
 include(GoogleTest)
 
