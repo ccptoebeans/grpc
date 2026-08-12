@@ -2,7 +2,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(logging_sink_test VERSION 1.0.0)
 
-find_package(Python3 COMPONENTS Development Interpreter REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(absl CONFIG REQUIRED)
 find_package(carbon-core CONFIG REQUIRED)
@@ -23,7 +22,7 @@ target_include_directories(logging_test
 )
 
 
-target_link_libraries(logging_test PRIVATE client GTest::gtest GTest::gtest_main Python3::Python absl::any absl::log absl::base absl::bits)
+target_link_libraries(logging_test PRIVATE client GTest::gtest GTest::gtest_main absl::any absl::log absl::base absl::bits)
 
 gtest_discover_tests(
         logging_test capiTests
