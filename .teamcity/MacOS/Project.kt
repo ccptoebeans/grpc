@@ -34,10 +34,15 @@ object Project : Project({
     id("MacOS")
     name = "macOS"
 
-    buildType(Debug)
-    buildType(Internal)
-    buildType(TrinityDev)
-    buildType(Release)
+    buildType(arm64_Debug)
+    buildType(arm64_Internal)
+    buildType(arm64_TrinityDev)
+    buildType(arm64_Release)
+
+    buildType(x64_Debug)
+    buildType(x64_Internal)
+    buildType(x64_TrinityDev)
+    buildType(x64_Release)
 })
 
 class CarbonBuildMacOS(buildName: String, configType: String, preset: String, agentArchitecture: String) : BuildType({
