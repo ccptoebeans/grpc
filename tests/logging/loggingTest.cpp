@@ -72,13 +72,6 @@ TEST_F (TestEnv, SetLogLevelDebugOld)
 	ASSERT_EQ( monolith_grpc::client::GrpcLog::GetLogEntries().size(), 1 );
 	LOG(ERROR) << "ERROR" << std::endl;
 	ASSERT_EQ( monolith_grpc::client::GrpcLog::GetLogEntries().size(), 1 );
-
-	auto entries = monolith_grpc::client::GrpcLog::GetLogEntries();
-
-	for (const auto& entry : entries)
-	{
-		std::cout << entry.message << std::endl;
-	}
 }
 
 TEST_F (TestEnv, SetLogLevelWarnOld)
@@ -92,11 +85,6 @@ TEST_F (TestEnv, SetLogLevelWarnOld)
 	LOG(ERROR) << "ERROR" << std::endl;
 	ASSERT_EQ( monolith_grpc::client::GrpcLog::GetLogEntries().size(), 1 );
 	auto entries = monolith_grpc::client::GrpcLog::GetLogEntries();
-
-	for (const auto& entry : entries)
-	{
-		std::cout << entry.message << std::endl;
-	}
 }
 
 TEST_F (TestEnv, SetLogLevelErrOld)
