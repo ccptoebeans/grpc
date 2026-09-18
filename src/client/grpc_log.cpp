@@ -71,7 +71,7 @@ public:
 private:
 	std::mutex m_lock;
 	std::list<GrpcLogEntry> m_log;
-	int m_verbosity{GPR_LOG_SEVERITY_DEBUG};
+	int m_verbosity{GPR_LOG_SEVERITY_ERROR};
 };
 
 GrpcLogEntry::GrpcLogEntry(std::string file, int line, gpr_log_severity severity, std::string message)
