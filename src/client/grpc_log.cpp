@@ -39,6 +39,8 @@ public:
 			break;
 		}
 
+		// the rest of this function only exists to support deprecated behaviour that exposes logs to python
+
 		int severity  {static_cast<std::underlying_type_t<decltype(severityEnumType)>>(severityEnumType)};
 		if (severity < m_verbosity)
 		{
